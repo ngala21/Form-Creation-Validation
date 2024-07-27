@@ -54,10 +54,10 @@ document.addEventListener ("DOMContentLoaded", () =>  {
 
 
   //  Displaying logic
-   feedbackDiv.style.display = 'block';
+   feedbackDiv.style.display = "block";
   
   //  Displaying Feedback
-    if (isValid === true) {
+    if (isValid) {
       feedbackDiv.textContent = "Registration Successful!";
       feedbackDiv.style.color = "#28a745";
      } else {
