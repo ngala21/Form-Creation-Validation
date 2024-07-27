@@ -1,12 +1,16 @@
-// Form Selection
+// Ensures JavaScript runs after entire HTML is loaded
+document.addEventListener ('DOMContentLoaded', () =>  {
+  
+  // Form Selection
   const form = document.getElementById('registration-form');
 
-// Feedback Div Selection
-let feedbackDiv = document.getElementById('form-feedback');  
+  // Feedback Selection
+  const feedbackDiv = document.getElementById('form-feedback'); 
 
-// Ensures JavaScript runs after entire HTML is loaded
-form.addEventListener ('submit', function(event) {
-  event.preventDefault(); //Prevents form from auto-submitting..
+  // Adding Event Listener to form
+  form.addEventListener('submit', function(event) {
+    //Prevents form from auto-submitting..
+    event.preventDefault();
 
   // Step 2
   // Input Retrieval and Trimming (RT)
@@ -21,40 +25,45 @@ form.addEventListener ('submit', function(event) {
    const password = document.getElementById('password').value.trim();
 
    //  Validation Logic 
-   // 1. Initialize Validation Variables
-    // overall validation status
+
+    //  Initialize Validation Variables
+    // verall validation status
     let isValid = true;
 
     //  Array to store validation error messages
-    const messages = [];
+    let messages = [];
 
-   // 2. Username Validation
-    if(username.length < 3) {
+   // 1. Username Validation
+    if (username.length < 3) {
       isValid = false;
-      let usernameError = username.innerHTML = 'Username must be at least 3 characters long';
-    } 
-   // 3. Email Validation
-    if(!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/) {
-      isValid = false;
-      let emailError = email.innerHTML = 'Please enter a valid email address';
-     }
+      messages.push('Username must be at least 3 characters long');
+    }
 
-   // 4. Password Validation
+   // 2. Email Validation
+    if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(email.value)) {
+      isValid = false;
+      messages.push('Please enter a valid email address');
+     } 
+
+   // 3. Password Validation
    if (password.length < 8) {
     isValid = false;
-    let passwordError = password.innerHTML = 'Password must  be at least 8 characters long';
+    messages.push('Password must be at least 8 characters long.');
    }
+
 
   //  Displaying logic
    feedbackDiv.style.display = 'block';
-
-   if (isValid === true) {
-    feedbackDiv.textContent = 'Registration Successful';
-    feedbackDiv.style.color = '#28a745';
-   }else {
-    // feedbackDiv.innerHTML ='usernameError + emailError + password Error';
-    feedbackDiv.style.color = '#dc3545';
-   } 
+  
+  //  Displaying Feedback
+    if (isValid === true ) {
+      feedbackDiv.textContent = 'Registration Successful';
+      feedbackDiv.style.color = '#28a745';
+     } else {
+      feedbackDiv.innerHTML = messages.join('<br>'); 
+      feedbackDiv.style.color = '#dc3545';
+     } 
+});
 });
 
 
