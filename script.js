@@ -24,10 +24,10 @@ document.addEventListener ("DOMContentLoaded", () =>  {
    // Password RT
    const password = document.getElementById('password').value.trim();
 
-   //  Validation Logic 
+    //  Validation Logic 
 
     //  Initialize Validation Variables
-    // verall validation status
+    // overall validation status
     let isValid = true;
 
     //  Array to store validation error messages
@@ -40,7 +40,8 @@ document.addEventListener ("DOMContentLoaded", () =>  {
     }
 
    // 2. Email Validation
-    if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(email.value)) {
+
+    if (!email.includes('@') || !email.includes('.')) {
       isValid = false;
       messages.push('Please enter a valid email address');
      } 
@@ -57,11 +58,11 @@ document.addEventListener ("DOMContentLoaded", () =>  {
   
   //  Displaying Feedback
     if (isValid === true) {
-      feedbackDiv.textContent = "Registration Successful";
-      feedbackDiv.style.color = '#28a745';
+      feedbackDiv.textContent = "Registration Successful!";
+      feedbackDiv.style.color = "#28a745";
      } else {
       feedbackDiv.innerHTML = messages.join('<br>'); 
-      feedbackDiv.style.color = '#dc3545';
+      feedbackDiv.style.color = "#dc3545";
      } 
 });
 });
