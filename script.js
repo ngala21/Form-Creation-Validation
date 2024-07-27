@@ -1,5 +1,5 @@
 // Ensures JavaScript runs after entire HTML is loaded
-document.addEventListener ('DOMContentLoaded', () =>  {
+document.addEventListener ("DOMContentLoaded", () =>  {
   
   // Form Selection
   const form = document.getElementById('registration-form');
